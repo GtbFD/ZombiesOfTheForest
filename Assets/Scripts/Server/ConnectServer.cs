@@ -5,10 +5,13 @@ using System.Net;
 using UnityEngine;
 using System.Text;
 using System;
+using UnityEngine.UI;
+using TMPro;
 
 public class ConnectServer : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Text quantityPlayers;
     void Start()
     {
         StartClient();
@@ -30,15 +33,16 @@ public class ConnectServer : MonoBehaviour
         Console.WriteLine("Socket connected to {0}",
             sender.RemoteEndPoint.ToString());
 
-        byte[] msg = Encoding.ASCII.GetBytes("This is a test<EOF>");
+        byte[] msg = Encoding.ASCII.GetBytes("0");
 
         int bytesSent = sender.Send(msg);
 
         int bytesRec = sender.Receive(bytes);
-        /*Console.WriteLine("Echoed test = {0}",
-            Encoding.ASCII.GetString(bytes, 0, bytesRec));*/
 
-        Debug.Log(Encoding.ASCII.GetString(bytes, 0, bytesRec));
+
+        string connections = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+        quantityPlayers.text = connections;
 
         /*sender.Shutdown(SocketShutdown.Both);
         sender.Close();*/
