@@ -42,7 +42,7 @@ public class ConnectServer : MonoBehaviour
 
         string connections = Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
-        quantityPlayers.text = connections;
+        quantityPlayers.text = connections + " players"; 
 
         /*sender.Shutdown(SocketShutdown.Both);
         sender.Close();*/
