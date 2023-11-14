@@ -2,6 +2,8 @@ using System.Net.Sockets;
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
+using UnityEngine.Diagnostics;
 
 public class ConnectServer : MonoBehaviour
 {
@@ -30,32 +32,19 @@ public class ConnectServer : MonoBehaviour
         Debug.Log("Socket connected to >" 
             + SocketConnection.RemoteEndPoint.ToString());
 
-        /*byte[] msg = Encoding.ASCII.GetBytes("0");
+        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EOF>");
+        SocketConnection.Send(CommandToLeave);
 
-        Player p = new Player();
-        p.id = sender.GetHashCode();
-        p.name = "Gutemberg";
+        int BytesReciev = SocketConnection.Receive(DataRecieved);
+        string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
 
-        String msg2 = JsonConvert.SerializeObject(p);
-
-        int bytesSent = sender.Send(Encoding.ASCII.GetBytes(msg2));
-
-        int bytesRec = sender.Receive(bytes);
-
-        string data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-
-        quantityPlayers.text = data;
-
-        if (data.IndexOf("<EOF>") > -1)
+       
+        if (CommandReciev.IndexOf("<EOF>") > -1)
         {
-            sender.Shutdown(SocketShutdown.Both);
-            sender.Close();
+            Debug.Log("Player disconnected");
+            SocketConnection.Shutdown(SocketShutdown.Both);
+            SocketConnection.Close();
         }
- 
-        quantityPlayers.text = connections + " - " + p.name; 
-
-        /*sender.Shutdown(SocketShutdown.Both);
-        sender.Close();*/
     }
 
     IPEndPoint ConfigEndPoint()
