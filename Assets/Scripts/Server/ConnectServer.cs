@@ -3,7 +3,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
-using UnityEngine.Diagnostics;
+using System;
 
 public class ConnectServer : MonoBehaviour
 {
@@ -33,15 +33,16 @@ public class ConnectServer : MonoBehaviour
             + SocketConnection.RemoteEndPoint.ToString());
 
         byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EOF>");
+
         SocketConnection.Send(CommandToLeave);
 
         int BytesReciev = SocketConnection.Receive(DataRecieved);
         string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
 
-       
+
         if (CommandReciev.IndexOf("<EOF>") > -1)
         {
-            Debug.Log("Player disconnected");
+            Debug.Log("Server authorization to disconnect");
             SocketConnection.Shutdown(SocketShutdown.Both);
             SocketConnection.Close();
         }
