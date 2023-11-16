@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System;
+using System.Threading;
 
 public class ConnectServer : MonoBehaviour
 {
-    public Text quantityPlayers;
+
+    public String StateQuantityPlayers;
+    public Text QuantityPlayers;
 
     private string HOST;
     private int PORT;
     private int BUFFER_LENGTH = 1024;
+
+    Socket SocketConnection;
     void Start()
     {
         HOST = "localhost";
@@ -22,30 +27,22 @@ public class ConnectServer : MonoBehaviour
 
     void ConnectClientOnServer() 
     {
-        byte[] DataRecieved = new byte[BUFFER_LENGTH];
-
+        
         IPEndPoint EndPointConnection = ConfigEndPoint();
 
-        Socket SocketConnection = ConfigConnection(EndPointConnection);
+        SocketConnection = ConfigConnection(EndPointConnection);
         SocketConnection.Connect(EndPointConnection);
 
         Debug.Log("Socket connected to >" 
             + SocketConnection.RemoteEndPoint.ToString());
 
-        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EOF>");
+        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EEE>");
 
         SocketConnection.Send(CommandToLeave);
 
-        int BytesReciev = SocketConnection.Receive(DataRecieved);
-        string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
-
-
-        if (CommandReciev.IndexOf("<EOF>") > -1)
-        {
-            Debug.Log("Server authorization to disconnect");
-            SocketConnection.Shutdown(SocketShutdown.Both);
-            SocketConnection.Close();
-        }
+        Thread ListenerPackets =
+                new Thread(new ThreadStart(() => ListenPackets()));
+        ListenerPackets.Start();
     }
 
     IPEndPoint ConfigEndPoint()
@@ -67,8 +64,38 @@ public class ConnectServer : MonoBehaviour
         return SocketConnection;
     }
 
+    void ListenPackets()
+    {
+        while (true)
+        {
+            byte[] DataRecieved = new byte[BUFFER_LENGTH];
+            int BytesReciev = SocketConnection.Receive(DataRecieved);
+            string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
+
+            if (CommandReciev.IndexOf("0000") > -1)
+            {
+                StateQuantityPlayers = CommandReciev;
+            }
+
+            if (CommandReciev.IndexOf("<EOF>") > -1)
+            {
+                Debug.Log("Server authorization to disconnect");
+                SocketConnection.Shutdown(SocketShutdown.Both);
+                SocketConnection.Close();
+            }
+
+        }
+    }
+
     void Update()
     {
-        
+        QuantityPlayers.text = StateQuantityPlayers + " connected players";
+    }
+
+    private void OnApplicationQuit()
+    {
+        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EOF>");
+
+        SocketConnection.Send(CommandToLeave);
     }
 }
