@@ -72,7 +72,7 @@ public class ConnectServer : MonoBehaviour
             int BytesReciev = SocketConnection.Receive(DataRecieved);
             string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
 
-            if (CommandReciev.IndexOf("0000") > -1)
+            if (CommandReciev.Contains("000"))
             {
                 StateQuantityPlayers = CommandReciev;
             }
