@@ -36,10 +36,6 @@ public class ConnectServer : MonoBehaviour
         Debug.Log("Socket connected to >" 
             + SocketConnection.RemoteEndPoint.ToString());
 
-        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EEE>");
-
-        SocketConnection.Send(CommandToLeave);
-
         Thread ListenerPackets =
                 new Thread(new ThreadStart(() => ListenPackets()));
         ListenerPackets.Start();
@@ -72,12 +68,7 @@ public class ConnectServer : MonoBehaviour
             int BytesReciev = SocketConnection.Receive(DataRecieved);
             string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
 
-            if (CommandReciev.Contains("000"))
-            {
-                StateQuantityPlayers = CommandReciev;
-            }
-
-            if (CommandReciev.IndexOf("<EOF>") > -1)
+            if (CommandReciev.Contains("0000"))
             {
                 Debug.Log("Server authorization to disconnect");
                 SocketConnection.Shutdown(SocketShutdown.Both);
@@ -94,7 +85,7 @@ public class ConnectServer : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        byte[] CommandToLeave = Encoding.ASCII.GetBytes("<EOF>");
+        byte[] CommandToLeave = Encoding.ASCII.GetBytes("0000");
 
         SocketConnection.Send(CommandToLeave);
     }
