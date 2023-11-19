@@ -62,11 +62,19 @@ public class ConnectServer : MonoBehaviour
 
     void ListenPackets()
     {
+        var commandToGetAllPlayerConnected = Encoding.ASCII.GetBytes("0001");
+        SocketConnection.Send(commandToGetAllPlayerConnected);
+        
         while (true)
         {
             byte[] DataRecieved = new byte[BUFFER_LENGTH];
             int BytesReciev = SocketConnection.Receive(DataRecieved);
             string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
+            
+            if (CommandReciev.Contains("0001"))
+            {
+                Debug.Log("Quantity players received by server.");
+            }
 
             if (CommandReciev.Contains("0000"))
             {
@@ -85,7 +93,7 @@ public class ConnectServer : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        byte[] CommandToLeave = Encoding.ASCII.GetBytes("0000");
+        var CommandToLeave = Encoding.ASCII.GetBytes("0000");
 
         SocketConnection.Send(CommandToLeave);
     }
