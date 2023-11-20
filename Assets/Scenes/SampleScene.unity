@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StateQuantityPlayers: 
   QuantityPlayers: {fileID: 1054438900}
---- !u!114 &398300139
+--- !u!114 &398300140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290542aa0ab8064e8825dfc4ac1cacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 398300136}
+  animator: {fileID: 398300136}
 --- !u!1 &478216001
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ PrefabInstance:
       addedObject: {fileID: 398300138}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5324194ad8e0b9141a70adbb8012aeb6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 398300139}
+      addedObject: {fileID: 398300140}
   m_SourcePrefab: {fileID: 100100000, guid: 5324194ad8e0b9141a70adbb8012aeb6, type: 3}
 --- !u!1 &705507993
 GameObject:

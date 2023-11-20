@@ -74,6 +74,7 @@ public class ConnectServer : MonoBehaviour
             if (CommandReciev.Contains("0001"))
             {
                 Debug.Log("Quantity players received by server.");
+                StateQuantityPlayers = CommandReciev.Substring(4);
             }
 
             if (CommandReciev.Contains("0000"))
@@ -88,7 +89,7 @@ public class ConnectServer : MonoBehaviour
 
     void Update()
     {
-        QuantityPlayers.text = StateQuantityPlayers + " connected players";
+        QuantityPlayers.text = StateQuantityPlayers + " player(s) connected";
     }
 
     private void OnApplicationQuit()
