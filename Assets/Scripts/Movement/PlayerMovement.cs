@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,9 +9,19 @@ public class PlayerMovement : MonoBehaviour, IMovement
 {
     [FormerlySerializedAs("Animator")] 
     public Animator animator;
+
+    private GameObject player;
+    private PlayerPosition _playerPosition;
+    
     void Start()
     {
-        
+        _playerPosition = new PlayerPosition();
+        _playerPosition.opcode = 2;
+    }
+
+    public PlayerPosition PlayerPosition()
+    {
+        return _playerPosition;
     }
 
     void Update()
@@ -19,6 +30,10 @@ public class PlayerMovement : MonoBehaviour, IMovement
         Backward();
         Leftward();
         Rightward();
+        
+        _playerPosition.x = transform.position.x;
+        _playerPosition.y = transform.position.y;
+        _playerPosition.z = transform.position.z;
     }
 
     public void Forward()

@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using System.Text;
 using System;
 using System.Threading;
+using Classes;
+using Newtonsoft.Json;
+using Palmmedia.ReportGenerator.Core.Common;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 public class ConnectServer : MonoBehaviour
 {
@@ -17,12 +21,16 @@ public class ConnectServer : MonoBehaviour
     private int BUFFER_LENGTH = 1024;
 
     Socket SocketConnection;
+
+    private PlayerMovement _playerMovement;
+
     void Start()
     {
         HOST = "localhost";
         PORT = 11000;
 
         ConnectClientOnServer();
+        _playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
     }
 
     void ConnectClientOnServer() 
@@ -62,7 +70,13 @@ public class ConnectServer : MonoBehaviour
 
     void ListenPackets()
     {
-        var commandToGetAllPlayerConnected = Encoding.ASCII.GetBytes("0001");
+        var updateConnectedPlayers = new UpdateConnectedPlayers();
+        updateConnectedPlayers.opcode = 1;
+        updateConnectedPlayers.quantity = 0;
+
+        var updateConnectedPlayersSerialized = JsonConvert.SerializeObject(updateConnectedPlayers);
+        var commandToGetAllPlayerConnected = Encoding.ASCII.GetBytes(updateConnectedPlayersSerialized);
+        
         SocketConnection.Send(commandToGetAllPlayerConnected);
         
         while (true)
@@ -71,18 +85,20 @@ public class ConnectServer : MonoBehaviour
             int BytesReciev = SocketConnection.Receive(DataRecieved);
             string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
             
-            if (CommandReciev.Contains("0001"))
+            var updateConnectedPlayersPacket = JsonConvert.DeserializeObject<UpdateConnectedPlayers>(CommandReciev);
+
+            if (updateConnectedPlayersPacket.opcode == 1)
             {
                 Debug.Log("Quantity players received by server.");
-                StateQuantityPlayers = CommandReciev.Substring(4);
+                StateQuantityPlayers = ""+updateConnectedPlayersPacket.quantity;
             }
 
-            if (CommandReciev.Contains("0000"))
+            /*if (CommandReciev.Contains("0000"))
             {
                 Debug.Log("Server authorization to disconnect");
                 SocketConnection.Shutdown(SocketShutdown.Both);
                 SocketConnection.Close();
-            }
+            }*/
 
         }
     }
@@ -90,6 +106,11 @@ public class ConnectServer : MonoBehaviour
     void Update()
     {
         QuantityPlayers.text = StateQuantityPlayers + " player(s) connected";
+
+        var command = JsonConvert.SerializeObject(_playerMovement.PlayerPosition());
+        var playerPosition = Encoding.ASCII.GetBytes(command);
+        SocketConnection.Send(playerPosition);
+        Debug.Log(command);
     }
 
     private void OnApplicationQuit()
