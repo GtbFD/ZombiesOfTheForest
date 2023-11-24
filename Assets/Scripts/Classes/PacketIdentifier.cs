@@ -8,8 +8,7 @@ namespace Utils
     {
         public static int Opcode(string packetReceived)
         {
-            //Debug.Log(packetReceived);
-            var pattern = @".*""opcode"":(.*?[0-9]*)";
+            const string pattern = @".*""opcode"":(.*?[0-9]*)";
             var matchResult = Regex.Match(packetReceived, @pattern).Groups[1].Value;
             var opcode = int.Parse(matchResult);
 
