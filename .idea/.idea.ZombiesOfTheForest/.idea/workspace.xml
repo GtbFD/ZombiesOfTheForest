@@ -2,33 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbac6d2d-7f91-446b-8611-b502e81025e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models/DisconnectPlayer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models/DisconnectPlayer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models/PlayerPosition.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Packets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Packets/ConnectedPlayers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Packets/ConnectedPlayers.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Packets/DisconnectPlayerPacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Packets/DisconnectPlayerPacket.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Serialization.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Serialization/DeserializePacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Serialization/SerializePacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Serialization/SerializePacket.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketEncoding.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketEncoding.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/ConfigClientConnection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/ConfigClientConnection.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/EndPointServer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/EndPointServer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/ServerInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Server/ServerInfo.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Classes.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PlayerPosition.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PlayerPosition.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Models/PlayerPosition.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/UpdateConnectedPlayers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Models/UpdateConnectedPlayers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/UpdateConnectedPlayers.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Models/UpdateConnectedPlayers.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ConnectServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Server/ConnectServer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,6 +94,7 @@
       <workItem from="1700677050949" duration="3270000" />
       <workItem from="1700744815359" duration="1918000" />
       <workItem from="1700779197962" duration="6066000" />
+      <workItem from="1700829731470" duration="2380000" />
     </task>
     <servers />
   </component>
