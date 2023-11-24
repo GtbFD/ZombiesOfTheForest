@@ -11,17 +11,22 @@ public class PlayerMovement : MonoBehaviour, IMovement
     public Animator animator;
 
     private GameObject player;
-    private PlayerPosition _playerPosition;
+    private PlayerPosition playerPosition;
     
     void Start()
     {
-        _playerPosition = new PlayerPosition();
-        _playerPosition.opcode = 2;
+        playerPosition = new PlayerPosition()
+        {
+            opcode = 2,
+            x = 0.0f,
+            y = 0.0f,
+            z = 0.0f
+        };
     }
 
     public PlayerPosition PlayerPosition()
     {
-        return _playerPosition;
+        return playerPosition;
     }
 
     void Update()
@@ -30,10 +35,6 @@ public class PlayerMovement : MonoBehaviour, IMovement
         Backward();
         Leftward();
         Rightward();
-        
-        _playerPosition.x = transform.position.x;
-        _playerPosition.y = transform.position.y;
-        _playerPosition.z = transform.position.z;
     }
 
     public void Forward()
@@ -42,6 +43,9 @@ public class PlayerMovement : MonoBehaviour, IMovement
         {
             animator.SetBool("isForward", true);
             transform.Translate(Vector3.forward * Time.deltaTime);
+            /*playerPosition.x = transform.position.x;
+            /playerPosition.y = transform.position.y;*/
+            playerPosition.z = transform.position.z;
         }
         else
         {
