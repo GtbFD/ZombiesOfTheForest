@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2d6ad784324cc49ae68e7999c646cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StateQuantityPlayers: 
-  QuantityPlayers: {fileID: 1054438900}
+  stateQuantityPlayers: 
+  quantityPlayers: {fileID: 1054438900}
 --- !u!114 &398300140
 MonoBehaviour:
   m_ObjectHideFlags: 0

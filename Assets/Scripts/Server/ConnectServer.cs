@@ -4,23 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Classes;
+using Interfaces;
 using Newtonsoft.Json;
-using Palmmedia.ReportGenerator.Core.Common;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using Packets;
+using Serialization;
+using Unity.VisualScripting;
+using Utils;
 
 public class ConnectServer : MonoBehaviour
 {
 
-    public String StateQuantityPlayers;
-    public Text QuantityPlayers;
+    //public string stateQuantityPlayers;
+    public static Text quantityPlayers;
 
     private string HOST;
     private int PORT;
     private int BUFFER_LENGTH = 1024;
 
-    Socket SocketConnection;
+    Socket socketConnection;
 
     private PlayerMovement _playerMovement;
 
@@ -38,11 +42,11 @@ public class ConnectServer : MonoBehaviour
         
         IPEndPoint EndPointConnection = ConfigEndPoint();
 
-        SocketConnection = ConfigConnection(EndPointConnection);
-        SocketConnection.Connect(EndPointConnection);
+        socketConnection = ConfigConnection(EndPointConnection);
+        socketConnection.Connect(EndPointConnection);
 
         Debug.Log("Socket connected to >" 
-            + SocketConnection.RemoteEndPoint.ToString());
+            + socketConnection.RemoteEndPoint.ToString());
 
         Thread ListenerPackets =
                 new Thread(new ThreadStart(() => ListenPackets()));
@@ -70,34 +74,53 @@ public class ConnectServer : MonoBehaviour
 
     void ListenPackets()
     {
-        var updateConnectedPlayers = new UpdateConnectedPlayers();
-        updateConnectedPlayers.opcode = 1;
-        updateConnectedPlayers.quantity = 0;
+        var updateConnectedPlayers = new UpdateConnectedPlayers()
+        {
+            opcode = 1,
+            quantity = 0
+        };
 
-        var updateConnectedPlayersSerialized = JsonConvert.SerializeObject(updateConnectedPlayers);
-        var commandToGetAllPlayerConnected = Encoding.ASCII.GetBytes(updateConnectedPlayersSerialized);
+        var packetToGetAllPlayerConnected =
+            new SerializePacket().Serialize(updateConnectedPlayers);
         
-        SocketConnection.Send(commandToGetAllPlayerConnected);
+        socketConnection.Send(packetToGetAllPlayerConnected);
         
         while (true)
         {
-            byte[] DataRecieved = new byte[BUFFER_LENGTH];
-            int BytesReciev = SocketConnection.Receive(DataRecieved);
-            string CommandReciev = Encoding.ASCII.GetString(DataRecieved, 0, BytesReciev);
-            
-            var updateConnectedPlayersPacket = JsonConvert.DeserializeObject<UpdateConnectedPlayers>(CommandReciev);
+            var buffer = new byte[BUFFER_LENGTH];
+            var bytesReceived = socketConnection.Receive(buffer);
+            var packetReceived = Encoding.ASCII.GetString(buffer, 0, bytesReceived);
 
-            if (updateConnectedPlayersPacket.opcode == 1)
+            var packets = new List<IPacketHandler>()
             {
+                new ConnectedPlayers(socketConnection),
+                new DisconnectPlayerPacket(socketConnection)
+            };
+
+            var packetHandler = new PacketManager(packets);
+            packetHandler.Manager(packetReceived);
+
+            /*if (packetReceived.Contains("\"opcode\":0"))
+            {
+                //Debug.Log("Server authorization to disconnect");
+                /*SocketConnection.Shutdown(SocketShutdown.Both);
+                SocketConnection.Close();
+            }
+            
+            if (packetReceived.Contains("\"opcode\":1"))
+            {
+                var updateConnectedPlayersPacket =
+                    new DeserializePacket().Deserialize<UpdateConnectedPlayers>(packetReceived);
+
                 Debug.Log("Quantity players received by server.");
-                StateQuantityPlayers = ""+updateConnectedPlayersPacket.quantity;
+                stateQuantityPlayers = "" + updateConnectedPlayersPacket.quantity;
             }
 
-            /*if (CommandReciev.Contains("0000"))
+            if (packetReceived.Contains("\"opcode\":2"))
             {
-                Debug.Log("Server authorization to disconnect");
-                SocketConnection.Shutdown(SocketShutdown.Both);
-                SocketConnection.Close();
+                var playerPositionPacket = 
+                    new DeserializePacket().Deserialize<PlayerPosition>(packetReceived);
+                Debug.Log(playerPositionPacket);
             }*/
 
         }
@@ -105,18 +128,21 @@ public class ConnectServer : MonoBehaviour
 
     void Update()
     {
-        QuantityPlayers.text = StateQuantityPlayers + " player(s) connected";
+        //quantityPlayers.text = stateQuantityPlayers + " player(s) connected";
 
-        var command = JsonConvert.SerializeObject(_playerMovement.PlayerPosition());
-        var playerPosition = Encoding.ASCII.GetBytes(command);
-        SocketConnection.Send(playerPosition);
-        Debug.Log(command);
+        /*var playerPositionPacket = new SerializePacket().Serialize(_playerMovement.PlayerPosition());
+        SocketConnection.Send(playerPositionPacket);*/
     }
 
     private void OnApplicationQuit()
     {
-        var CommandToLeave = Encoding.ASCII.GetBytes("0000");
+        var disconnectPlayer = new DisconnectPlayer()
+        {
+            opcode = 0
+        };
 
-        SocketConnection.Send(CommandToLeave);
+        var disconnectPlayerSerializedPacket = new SerializePacket().Serialize(disconnectPlayer);
+        
+        socketConnection.Send(disconnectPlayerSerializedPacket);
     }
 }
