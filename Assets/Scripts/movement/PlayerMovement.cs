@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Classes;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,23 +10,12 @@ public class PlayerMovement : MonoBehaviour, IMovement
     public Animator animator;
 
     private GameObject player;
-    private PlayerPosition playerPosition;
-    
+
     void Start()
     {
-        playerPosition = new PlayerPosition()
-        {
-            opcode = 2,
-            x = 0.0f,
-            y = 0.0f,
-            z = 0.0f
-        };
-    }
 
-    public PlayerPosition PlayerPosition()
-    {
-        return playerPosition;
     }
+    
 
     void Update()
     {
@@ -45,7 +33,6 @@ public class PlayerMovement : MonoBehaviour, IMovement
             transform.Translate(Vector3.forward * Time.deltaTime);
             /*playerPosition.x = transform.position.x;
             /playerPosition.y = transform.position.y;*/
-            playerPosition.z = transform.position.z;
         }
         else
         {

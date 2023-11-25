@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 
-namespace Serialization
+namespace utils.io
 {
     public class DeserializePacket
     {
-        public T Deserialize<T>(string packet)
+        public static T Deserialize<T>(string packet)
         {
             return JsonConvert.DeserializeObject<T>(packet);
         }
