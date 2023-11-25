@@ -1,7 +1,6 @@
-﻿using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
-namespace Server
+namespace server.config
 {
     public class ConfigClientConnection
     {

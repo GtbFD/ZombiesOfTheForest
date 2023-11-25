@@ -6,14 +6,15 @@ using System.Text;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Classes;
+using handlers;
 using Interfaces;
 using Newtonsoft.Json;
-using Packets;
-using Serialization;
-using Server;
+using packets.enums;
+using packets.request;
+using server.config;
+using server.utils;
 using Unity.VisualScripting;
-using Utils;
+using utils.io;
 
 public class ConnectServer : MonoBehaviour
 {
@@ -41,27 +42,28 @@ public class ConnectServer : MonoBehaviour
 
     private void ListenPackets()
     {
-        /*var updateConnectedPlayers = new UpdateConnectedPlayers()
+        var loginPlayerPacket = new LoginPlayerPacket()
         {
-            opcode = 1,
-            quantity = 0
+            opcode = (int)OpcodePackets.LOGIN_PLAYER,
+            user = "admin",
+            password = "admin"
         };
 
-        var packetToGetAllPlayerConnected =
-            new SerializePacket().Serialize(updateConnectedPlayers);
+        var loginPlayerPacketSerialized =
+            SerializePacket.Serialize(loginPlayerPacket);
         
-        connection.Send(packetToGetAllPlayerConnected);*/
+        connection.Send(loginPlayerPacketSerialized);
         
         while (true)
         {
             var buffer = new ServerInfo().GetBuffer();
             var packetReceived = connection.Receive(buffer);
-            var packetSerialized = new PacketEncoding().String(packetReceived);
+            var packetSerialized = Encoding.UTF8.GetString(buffer, 0, packetReceived);
 
             var packets = new List<IPacketHandler>()
             {
-                //new ConnectedPlayers(connection),
-                new DisconnectPlayerPacket(connection)
+                new LoginPlayerHandler(connection),
+                new DisconnectPlayerHandler(connection)
             };
 
             var packetHandler = new PacketManager(packets);
@@ -77,12 +79,12 @@ public class ConnectServer : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        var disconnectPlayer = new DisconnectPlayer()
+        var disconnectPlayer = new DisconnectPlayerPacket()
         {
-            opcode = 0
+            opcode = (int)OpcodePackets.DISCONNECT_PLAYER
         };
 
-        var disconnectPlayerSerializedPacket = new SerializePacket().Serialize(disconnectPlayer);
+        var disconnectPlayerSerializedPacket = SerializePacket.Serialize(disconnectPlayer);
         
         connection.Send(disconnectPlayerSerializedPacket);
     }

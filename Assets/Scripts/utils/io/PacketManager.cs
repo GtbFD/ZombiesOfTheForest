@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Interfaces;
 
-namespace Utils
+namespace utils.io
 {
     public class PacketManager
     {

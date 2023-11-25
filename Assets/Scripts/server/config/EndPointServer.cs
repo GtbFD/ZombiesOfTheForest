@@ -1,6 +1,7 @@
 ﻿using System.Net;
+using server.utils;
 
-namespace Server
+namespace server.config
 {
     public class EndPointServer
     {

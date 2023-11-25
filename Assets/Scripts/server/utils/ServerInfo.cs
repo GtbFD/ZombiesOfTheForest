@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace Server
+namespace server.utils
 {
     public class ServerInfo
     {
