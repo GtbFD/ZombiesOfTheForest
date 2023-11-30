@@ -2,65 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbac6d2d-7f91-446b-8611-b502e81025e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/enums.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/request.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/response.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/config.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/utils.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ConnectionPlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ConnectionPlayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ReadPacket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ReadPacket.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/WritePacket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/WritePacket.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketEncoding.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketEncoding.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketIdentifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketIdentifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketIdentifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Classes/PacketManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/packets.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/DisconnectPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/DisconnectPlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/PlayerPosition.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/PlayerPosition.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/UpdateConnectedPlayers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/UpdateConnectedPlayers.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Packets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Packets/ConnectedPlayers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Packets/ConnectedPlayers.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Packets/DisconnectPlayerPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Packets/DisconnectPlayerPacket.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Serialization.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Serialization/DeserializePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/DeserializePacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Serialization/DeserializePacket.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/DeserializePacket.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Serialization/SerializePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Serialization/SerializePacket.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ConfigClientConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/ConfigClientConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ConfigClientConnection.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/ConfigClientConnection.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ConnectServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ConnectServer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/EndPointServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/EndPointServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/EndPointServer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/EndPointServer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ServerInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ServerInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Server/ServerInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ServerInfo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs.meta" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -140,6 +112,9 @@
       <workItem from="1700829731470" duration="2631000" />
       <workItem from="1700834427617" duration="2592000" />
       <workItem from="1700905813333" duration="9999000" />
+      <workItem from="1700940368127" duration="6276000" />
+      <workItem from="1701086910907" duration="4425000" />
+      <workItem from="1701298682680" duration="3983000" />
     </task>
     <servers />
   </component>

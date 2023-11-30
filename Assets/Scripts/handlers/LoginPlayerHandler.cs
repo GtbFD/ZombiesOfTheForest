@@ -1,9 +1,8 @@
 ﻿using System.Net.Sockets;
 using Interfaces;
 using packets.enums;
-using packets.response;
+using server.utils;
 using UnityEngine;
-using utils.io;
 
 namespace handlers
 {
@@ -17,18 +16,18 @@ namespace handlers
             this.connection = connection;
         }
         
-        public void Handler(string packetReceived)
+        public void Handler(byte[] packetReceived)
         {
             Read(packetReceived);
         }
         
-        public void Read(string packetReceived)
+        public void Read(byte[] packetReceived)
         {
-            var opcode = PacketIdentifier.Opcode(packetReceived);
+            var reader = new ReadPacket(packetReceived);
+            var opcode = reader.ReadInt();
 
             if (opcode == (int)OpcodePackets.LOGIN_PLAYER_RESPONSE_SUCCESS)
             {
-                var loginPlayerPacket = DeserializePacket.Deserialize<LoginPlayerResponsePacket>(packetReceived);
                 Debug.Log("Login success!");
             }
 
@@ -40,7 +39,7 @@ namespace handlers
 
         public void Write()
         {
-            throw new System.NotImplementedException();
+            
         }
 
     }

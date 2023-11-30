@@ -10,10 +10,11 @@ namespace utils.io
             return JsonConvert.SerializeObject(objectToSerialize);
         }
     
-        public static byte[] Serialize<T>(T objectToSerialize)
+        public static byte[] Serialize(string packetToSerialize)
         {
-            var serializedObject = JsonConvert.SerializeObject(objectToSerialize);
-            var serializedObjectPacket = Encoding.ASCII.GetBytes(serializedObject);
+            /*var serializedObject = JsonConvert.SerializeObject(objectToSerialize);
+            serializedObject += "<EOF>";*/
+            var serializedObjectPacket = Encoding.ASCII.GetBytes(packetToSerialize);
             return serializedObjectPacket;
         }
     }
