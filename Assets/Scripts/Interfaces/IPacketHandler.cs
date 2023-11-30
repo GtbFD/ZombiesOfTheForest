@@ -2,8 +2,8 @@
 {
     public interface IPacketHandler
     {
-        public void Read(string packetReceived);
+        public void Read(byte[] packetReceived);
         public void Write();
-        public void Handler(string packetReceived);
+        public void Handler(byte[] packetReceived);
     }
 }
