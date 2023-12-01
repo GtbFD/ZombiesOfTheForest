@@ -2,32 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbac6d2d-7f91-446b-8611-b502e81025e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ConnectionPlayer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ConnectionPlayer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ReadPacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ReadPacket.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/WritePacket.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/WritePacket.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPacketHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/DisconnectPlayerHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/LoginPlayerHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/packets/enums/OpcodePackets.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/DisconnectPlayerPacket.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request/LoginPlayerPacket.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/response/LoginPlayerResponsePacket.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/PacketManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/utils/io/SerializePacket.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +92,8 @@
       <workItem from="1700905813333" duration="9999000" />
       <workItem from="1700940368127" duration="6276000" />
       <workItem from="1701086910907" duration="4425000" />
-      <workItem from="1701298682680" duration="3983000" />
+      <workItem from="1701298682680" duration="4593000" />
+      <workItem from="1701350671347" duration="1733000" />
     </task>
     <servers />
   </component>
