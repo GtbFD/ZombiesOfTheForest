@@ -6,6 +6,7 @@ namespace server.utils
     {
         private string host;
         private int port;
+        private int portUDP;
         private Socket connection;
         private byte[] buffer;
         
@@ -13,7 +14,8 @@ namespace server.utils
         {
             host = "localhost";
             port = 11000;
-            buffer = new byte[1024];
+            portUDP = 11001;
+            buffer = new byte[4 * 1024];
         }
 
         public string GetHost()
@@ -21,9 +23,14 @@ namespace server.utils
             return host;
         }
 
-        public int GetPort()
+        public int GetPortTCP()
         {
             return port;
+        }
+
+        public int GetPortUDP()
+        {
+            return portUDP;
         }
 
         public byte[] GetBuffer()
