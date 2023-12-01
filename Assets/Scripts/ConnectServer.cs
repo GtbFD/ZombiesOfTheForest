@@ -2,18 +2,21 @@ using System.Net.Sockets;
 using UnityEngine;
 using System.Text;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading;
 using handlers;
 using Interfaces;
 using packets.enums;
 using server.config;
 using server.utils;
+using UnityEngine.tvOS;
 using UnityEngine.UI;
 using utils.io;
 
 public class ConnectServer : MonoBehaviour
 {
     private Socket connection;
+    private Socket connectionUDP;
     public Text UIConnectedPlayersText;
 
     private byte[] globalPacket;
@@ -25,15 +28,25 @@ public class ConnectServer : MonoBehaviour
 
     void ConnectOnServer()
     {
-        var endPoint = new EndPointServer().GetEndPoint();
+        var serverInfo = new ServerInfo();
+        
+        var endPoint = new EndPointServer().GetEndPoint(serverInfo.GetHost(), serverInfo.GetPortTCP());
         
         connection = new Socket(endPoint.AddressFamily,
             SocketType.Stream, ProtocolType.Tcp);
-        connection = new ConfigClientConnection().Config();
+        connection = new ConfigClientConnection().ConfigTCP();
         connection.Connect(endPoint);
 
         Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connection));
 
+        connectionUDP = new Socket(endPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+
+        var endPointUDP = new EndPointServer().GetEndPoint(serverInfo.GetHost(), serverInfo.GetPortUDP());
+        
+        var data = new byte[]{0x00, 0x01};
+        connectionUDP.SendTo(data, endPointUDP);
+        Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connection));
+        
         var listenerPackets = new Thread((ListenPackets));
         listenerPackets.Start();
     }
