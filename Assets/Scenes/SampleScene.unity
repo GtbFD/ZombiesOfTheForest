@@ -166,8 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2d6ad784324cc49ae68e7999c646cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateQuantityPlayers: 
-  quantityPlayers: {fileID: 1054438900}
+  UIConnectedPlayersText: {fileID: 1054438900}
 --- !u!114 &398300140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,7 +481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quantity players
+  m_Text: 
 --- !u!222 &1054438901
 CanvasRenderer:
   m_ObjectHideFlags: 0

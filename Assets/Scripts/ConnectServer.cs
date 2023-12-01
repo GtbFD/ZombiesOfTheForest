@@ -8,11 +8,15 @@ using Interfaces;
 using packets.enums;
 using server.config;
 using server.utils;
+using UnityEngine.UI;
 using utils.io;
 
 public class ConnectServer : MonoBehaviour
 {
     private Socket connection;
+    public Text UIConnectedPlayersText;
+
+    private byte[] globalPacket;
     
     void Start()
     {
@@ -60,7 +64,9 @@ public class ConnectServer : MonoBehaviour
                 new PlayerLocalizationHandler(connection)
             };
 
+            globalPacket = Encoding.ASCII.GetBytes(packetSerialized);
             var packetHandler = new PacketManager(packets);
+            
             packetHandler.Manager(Encoding.ASCII.GetBytes(packetSerialized));
 
         }
@@ -68,7 +74,15 @@ public class ConnectServer : MonoBehaviour
 
     void Update()
     {
-        
+        var reader = new ReadPacket(globalPacket);
+        var opcode= reader.ReadInt();
+
+        if (opcode == (int) OpcodePackets.UPDATE_CONNECTIONS_RESPONSE)
+        {
+            var quantity = reader.ReadInt();
+
+            UIConnectedPlayersText.text = "" + quantity;
+        }
     }
 
     private void OnApplicationQuit()
