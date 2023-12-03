@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Interfaces;
@@ -40,6 +41,13 @@ namespace handlers
 
         public void Write()
         {
+            var writer = new WritePacket();
+            writer.Write((int) OpcodePackets.PLAYER_LOCALIZATION);
+            writer.Write(1f);
+            writer.Write(2f);
+            writer.Write(3f);
+
+            var packet = writer.BuildPacket();
             
         }
     }

@@ -15,7 +15,7 @@ using utils.io;
 
 public class ConnectServer : MonoBehaviour
 {
-    private Socket connection;
+    private Socket connectionTCP;
     private Socket connectionUDP;
     public Text UIConnectedPlayersText;
 
@@ -30,23 +30,33 @@ public class ConnectServer : MonoBehaviour
     {
         var serverInfo = new ServerInfo();
         
+        /*
+         * Connection test UDP
+         */
+
+        var udpClient = new UdpClient(serverInfo.GetHost(), serverInfo.GetPortUDP());
+        
+        
+        /*
+         * Test message send UDP
+         */
+        var writer = new WritePacket();
+        writer.Write(1);
+        writer.Write("GUGA");
+        var packet = writer.BuildPacket();
+        udpClient.Send(packet, packet.Length);
+        
         var endPoint = new EndPointServer().GetEndPoint(serverInfo.GetHost(), serverInfo.GetPortTCP());
         
-        connection = new Socket(endPoint.AddressFamily,
+        connectionTCP = new Socket(endPoint.AddressFamily,
             SocketType.Stream, ProtocolType.Tcp);
-        connection = new ConfigClientConnection().ConfigTCP();
-        connection.Connect(endPoint);
+        connectionTCP = new ConfigClientConnection().ConfigTCP();
+        connectionTCP.Connect(endPoint);
 
-        Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connection));
-
-        connectionUDP = new Socket(endPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-
-        var endPointUDP = new EndPointServer().GetEndPoint(serverInfo.GetHost(), serverInfo.GetPortUDP());
+        Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connectionTCP));
         
-        var data = new byte[]{0x00, 0x01};
-        connectionUDP.SendTo(data, endPointUDP);
-        Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connection));
         
+
         var listenerPackets = new Thread((ListenPackets));
         listenerPackets.Start();
     }
@@ -54,7 +64,7 @@ public class ConnectServer : MonoBehaviour
     private void ListenPackets()
     {
         
-        ConnectionPlayer.GetInstance().SetConnection(connection);
+        ConnectionPlayer.GetInstance().SetConnection(connectionTCP);
         
         var writer = new WritePacket();
         writer.Write((int)OpcodePackets.LOGIN_PLAYER);
@@ -62,32 +72,31 @@ public class ConnectServer : MonoBehaviour
         writer.Write("admin");
 
         var packet = writer.BuildPacket();
-        connection.Send(packet);
+        connectionTCP.Send(packet);
         
         while (true)
         {
             var buffer = new ServerInfo().GetBuffer();
-            var packetReceived = connection.Receive(buffer);
+            var packetReceived = connectionTCP.Receive(buffer);
             var packetSerialized = Encoding.ASCII.GetString(buffer, 0, packetReceived);
-
-            var packets = new List<IPacketHandler>()
+            var packetBytes = Encoding.ASCII.GetBytes(packetSerialized);
+            if (packetBytes.Length != 0)
             {
-                new LoginPlayerHandler(connection),
-                new DisconnectPlayerHandler(connection),
-                new PlayerLocalizationHandler(connection)
-            };
 
-            globalPacket = Encoding.ASCII.GetBytes(packetSerialized);
-            var packetHandler = new PacketManager(packets);
-            
-            packetHandler.Manager(Encoding.ASCII.GetBytes(packetSerialized));
+                var packets = new List<IPacketHandler>()
+                {
+                    new LoginPlayerHandler(connectionTCP),
+                    new DisconnectPlayerHandler(connectionTCP),
+                };
 
+                new PacketManager(packets).Manager(packetBytes);
+            }
         }
     }
 
     void Update()
     {
-        var reader = new ReadPacket(globalPacket);
+        /*var reader = new ReadPacket(globalPacket);
         var opcode= reader.ReadInt();
 
         if (opcode == (int) OpcodePackets.UPDATE_CONNECTIONS_RESPONSE)
@@ -95,7 +104,7 @@ public class ConnectServer : MonoBehaviour
             var quantity = reader.ReadInt();
 
             UIConnectedPlayersText.text = "" + quantity;
-        }
+        }*/
     }
 
     private void OnApplicationQuit()
@@ -105,6 +114,6 @@ public class ConnectServer : MonoBehaviour
 
         var packet = writer.BuildPacket();
 
-        connection.Send(packet);
+        connectionTCP.Send(packet);
     }
 }
