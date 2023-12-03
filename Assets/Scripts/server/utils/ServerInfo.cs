@@ -7,12 +7,12 @@ namespace server.utils
         private string host;
         private int port;
         private int portUDP;
-        private Socket connection;
+        //private Socket connection;
         private byte[] buffer;
         
         public ServerInfo()
         {
-            host = "localhost";
+            host = "127.0.0.1";
             port = 11000;
             portUDP = 11001;
             buffer = new byte[4 * 1024];

@@ -4,10 +4,7 @@
     <list default="true" id="bbac6d2d-7f91-446b-8611-b502e81025e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConnectServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/request.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/packets/response.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/server/config/ConfigClientConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/ConfigClientConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/server/config/EndPointServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/config/EndPointServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/handlers/PlayerLocalizationHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/server/utils/ServerInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/server/utils/ServerInfo.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +95,11 @@
       <workItem from="1701298682680" duration="4593000" />
       <workItem from="1701350671347" duration="1733000" />
       <workItem from="1701394022926" duration="495000" />
-      <workItem from="1701449941106" duration="2674000" />
+      <workItem from="1701449941106" duration="2805000" />
+      <workItem from="1701470716933" duration="4735000" />
+      <workItem from="1701522354966" duration="2046000" />
+      <workItem from="1701525056476" duration="1202000" />
+      <workItem from="1701602187526" duration="2948000" />
     </task>
     <servers />
   </component>
