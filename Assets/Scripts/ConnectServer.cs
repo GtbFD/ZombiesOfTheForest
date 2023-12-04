@@ -2,14 +2,12 @@ using System.Net.Sockets;
 using UnityEngine;
 using System.Text;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading;
 using handlers;
 using Interfaces;
 using packets.enums;
 using server.config;
 using server.utils;
-using UnityEngine.tvOS;
 using UnityEngine.UI;
 using utils.io;
 
@@ -20,7 +18,7 @@ public class ConnectServer : MonoBehaviour
     public Text UIConnectedPlayersText;
 
     private byte[] globalPacket;
-    
+
     void Start()
     {
         ConnectOnServer();
@@ -30,22 +28,7 @@ public class ConnectServer : MonoBehaviour
     {
         var serverInfo = new ServerInfo();
         
-        /*
-         * Connection test UDP
-         */
 
-        var udpClient = new UdpClient(serverInfo.GetHost(), serverInfo.GetPortUDP());
-        
-        
-        /*
-         * Test message send UDP
-         */
-        var writer = new WritePacket();
-        writer.Write(1);
-        writer.Write("GUGA");
-        var packet = writer.BuildPacket();
-        udpClient.Send(packet, packet.Length);
-        
         var endPoint = new EndPointServer().GetEndPoint(serverInfo.GetHost(), serverInfo.GetPortTCP());
         
         connectionTCP = new Socket(endPoint.AddressFamily,
@@ -80,8 +63,10 @@ public class ConnectServer : MonoBehaviour
             var packetReceived = connectionTCP.Receive(buffer);
             var packetSerialized = Encoding.ASCII.GetString(buffer, 0, packetReceived);
             var packetBytes = Encoding.ASCII.GetBytes(packetSerialized);
+            
             if (packetBytes.Length != 0)
             {
+                globalPacket = packetBytes;
 
                 var packets = new List<IPacketHandler>()
                 {
@@ -96,15 +81,13 @@ public class ConnectServer : MonoBehaviour
 
     void Update()
     {
-        /*var reader = new ReadPacket(globalPacket);
-        var opcode= reader.ReadInt();
+        var readerPacket = new ReadPacket(globalPacket);
+        var opcode = readerPacket.ReadInt();
 
-        if (opcode == (int) OpcodePackets.UPDATE_CONNECTIONS_RESPONSE)
+        if (opcode == (int)OpcodePackets.UPDATE_CONNECTIONS_RESPONSE)
         {
-            var quantity = reader.ReadInt();
-
-            UIConnectedPlayersText.text = "" + quantity;
-        }*/
+            UIConnectedPlayersText.text = " " + readerPacket.ReadInt();
+        }
     }
 
     private void OnApplicationQuit()
