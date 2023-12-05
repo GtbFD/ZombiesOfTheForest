@@ -1,3 +1,4 @@
+using System;
 using System.Net.Sockets;
 using UnityEngine;
 using System.Text;
@@ -10,14 +11,15 @@ using server.config;
 using server.utils;
 using UnityEngine.UI;
 using utils.io;
+using Random = System.Random;
 
-public class ConnectServer : MonoBehaviour
+public sealed class ConnectServer : MonoBehaviour
 {
     private Socket connectionTCP;
     private Socket connectionUDP;
     public Text UIConnectedPlayersText;
 
-    private byte[] globalPacket;
+    public static byte[] globalPacket;
 
     void Start()
     {
@@ -37,8 +39,6 @@ public class ConnectServer : MonoBehaviour
         connectionTCP.Connect(endPoint);
 
         Debug.Log("Connected to " + new ServerInfo().RemoteEndPoint(connectionTCP));
-        
-        
 
         var listenerPackets = new Thread((ListenPackets));
         listenerPackets.Start();
@@ -87,6 +87,11 @@ public class ConnectServer : MonoBehaviour
         if (opcode == (int)OpcodePackets.UPDATE_CONNECTIONS_RESPONSE)
         {
             UIConnectedPlayersText.text = " " + readerPacket.ReadInt();
+        }
+
+        if (opcode == (int)OpcodePackets.PLAYER_LOCALIZATION_RESPONSE)
+        {
+            Debug.Log($"x {readerPacket.ReadFloat()}, y {readerPacket.ReadFloat()}, z {readerPacket.ReadFloat()}");
         }
     }
 
