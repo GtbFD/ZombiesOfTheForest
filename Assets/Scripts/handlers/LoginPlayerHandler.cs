@@ -28,7 +28,9 @@ namespace handlers
 
             if (opcode == (int)OpcodePackets.LOGIN_PLAYER_RESPONSE_SUCCESS)
             {
-                Debug.Log("Login success!");
+                var id = reader.ReadInt();
+                PlayerData.id = id;
+                Debug.Log($"Login success, ID RECEIVED {PlayerData.id}");
             }
 
             if (opcode == (int)OpcodePackets.LOGIN_PLAYER_RESPONSE_ERRO)

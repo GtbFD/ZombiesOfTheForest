@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Sockets;
 using Interfaces;
 using packets.enums;
@@ -16,13 +17,20 @@ namespace game
          */
         private UdpClient udpClient;
 
+        private PlayerData playerData;
+
         void Start()
         {
             /*
          * Connection test UDP
          */
+            playerData = new PlayerData();
+            
             var serverInfo = new ServerInfo();
             udpClient = new UdpClient(serverInfo.GetHost(), serverInfo.GetPortUDP());
+
+            /*var ipEd = new IPEndPoint(IPAddress.Parse("127.0.0.1"), serverInfo.GetPortUDP());
+            ConnectServer.globalPacket = udpClient.Receive(ref ipEd);*/
         }
 
         void Update()
@@ -35,17 +43,22 @@ namespace game
 
         public void SendPosition()
         {
+            PlayerData.x = transform.position.x;
+            PlayerData.y = transform.position.y;
+            PlayerData.z = transform.position.z;
+            
             var writer = new WritePacket();
             writer.Write((int)OpcodePackets.PLAYER_LOCALIZATION);
-            writer.Write(transform.position.x);
-            writer.Write(transform.position.y);
-            writer.Write(transform.position.z);
+            writer.Write(PlayerData.x);
+            writer.Write(PlayerData.y);
+            writer.Write(PlayerData.z);
 
             var playerLocalizationPacket = writer.BuildPacket();
 
             //ConnectionPlayer.GetInstance().GetConnection().Send(playerLocalizationPacket);
 
             udpClient.Send(playerLocalizationPacket, playerLocalizationPacket.Length);
+            
         }
 
         public void Forward()
