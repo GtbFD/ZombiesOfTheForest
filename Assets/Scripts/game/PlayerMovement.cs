@@ -10,7 +10,10 @@ namespace game
 {
     public class PlayerMovement : MonoBehaviour, IMovement
     {
-        [FormerlySerializedAs("Animator")] public Animator animator;
+        [FormerlySerializedAs("Animator")] 
+        private Animator animator;
+
+        private Vector2 inputPlayer;
 
         /*
          * Test
@@ -18,6 +21,8 @@ namespace game
         private UdpClient udpClient;
 
         private PlayerData playerData;
+        private IPEndPoint ipEndPoint;
+        
 
         void Start()
         {
@@ -29,16 +34,22 @@ namespace game
             var serverInfo = new ServerInfo();
             udpClient = new UdpClient(serverInfo.GetHost(), serverInfo.GetPortUDP());
 
-            /*var ipEd = new IPEndPoint(IPAddress.Parse("127.0.0.1"), serverInfo.GetPortUDP());
-            ConnectServer.globalPacket = udpClient.Receive(ref ipEd);*/
+            ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+            animator = GameObject.FindObjectOfType<Animator>();
         }
 
         void Update()
         {
-            Forward();
+            /*Forward();
             Backward();
             Leftward();
-            Rightward();
+            Rightward();*/
+
+            inputPlayer = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            animator.SetFloat("x", inputPlayer.x);
+            animator.SetFloat("y", inputPlayer.y);
+            t
         }
 
         public void SendPosition()
@@ -58,7 +69,7 @@ namespace game
             //ConnectionPlayer.GetInstance().GetConnection().Send(playerLocalizationPacket);
 
             udpClient.Send(playerLocalizationPacket, playerLocalizationPacket.Length);
-            
+
         }
 
         public void Forward()
@@ -93,17 +104,17 @@ namespace game
 
         public void Leftward()
         {
-            /*if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
-                animator.SetBool("isWalking", true);
+                animator.SetBool("isWalkingLeft", true);
                 transform.Translate(Vector3.left * Time.deltaTime);
                 
                 SendPosition();
             }
             else
             {
-                animator.SetBool("isWalking", false);
-            }*/
+                animator.SetBool("isWalkingLeft", false);
+            }
         }
 
         public void Rightward()
