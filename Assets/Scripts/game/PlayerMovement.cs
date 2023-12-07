@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using Interfaces;
+using game.movement;
+using game.movement.interfaces;
 using packets.enums;
 using server.utils;
 using UnityEngine;
@@ -8,12 +11,15 @@ using UnityEngine.Serialization;
 
 namespace game
 {
-    public class PlayerMovement : MonoBehaviour, IMovement
+    public class PlayerMovement : MonoBehaviour
     {
         [FormerlySerializedAs("Animator")] 
         private Animator animator;
 
         private Vector2 inputPlayer;
+
+        private List<IMovement> movements;
+        private CharacterController characterController;
 
         /*
          * Test
@@ -37,19 +43,26 @@ namespace game
             ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
             animator = GameObject.FindObjectOfType<Animator>();
+            characterController = GameObject.FindObjectOfType<CharacterController>();
+
+            movements = new List<IMovement>();
+            movements.Add(new Forward());
+            movements.Add(new Backward());
+            movements.Add(new Leftward());
+            movements.Add(new Rightward());
         }
 
         void Update()
         {
-            /*Forward();
-            Backward();
-            Leftward();
-            Rightward();*/
-
-            inputPlayer = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            animator.SetFloat("x", inputPlayer.x);
-            animator.SetFloat("y", inputPlayer.y);
-            t
+            foreach (var movement in movements)
+            {
+                movement.move(transform);
+            }
+            
+            var posPlayer = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                
+            animator.SetFloat("x", posPlayer.x);
+            animator.SetFloat("y", posPlayer.y);
         }
 
         public void SendPosition()
