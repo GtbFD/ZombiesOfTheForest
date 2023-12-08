@@ -9,7 +9,7 @@ namespace game.movement
         {
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(0, (100f * Time.deltaTime), 0);
+                transform.Rotate(0, (110f * Time.deltaTime), 0);
             }
         }
     }
