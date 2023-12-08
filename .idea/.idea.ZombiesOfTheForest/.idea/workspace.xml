@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbac6d2d-7f91-446b-8611-b502e81025e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/LookAtCamera.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/LookAtCamera.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/RotatePlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZombiesOfTheForest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Idle.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Left Turn.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Left Turn.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Player.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Player.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/PlayerAnimationController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/PlayerAnimationController.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Right Turn.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Right Turn.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Walking Backwards.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Walking Backwards.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/Walking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/Walking.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/movement/Leftward.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/Leftward.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/movement/Rightward.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/Rightward.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/LookAtCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/LookAtCamera.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/movement/camera/RotatePlayer.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +110,7 @@
       <workItem from="1701952947654" duration="5791000" />
       <workItem from="1701975250587" duration="1099000" />
       <workItem from="1701996471268" duration="892000" />
+      <workItem from="1702048967853" duration="5481000" />
     </task>
     <servers />
   </component>

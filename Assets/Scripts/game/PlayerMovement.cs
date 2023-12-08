@@ -17,6 +17,7 @@ namespace game
         private Animator animator;
 
         private Vector2 inputPlayer;
+        private Vector2 rotatePlayer;
 
         private List<IMovement> movements;
         private CharacterController characterController;
@@ -47,8 +48,8 @@ namespace game
 
             movements = new List<IMovement>();
             movements.Add(new Forward());
-            movements.Add(new Backward());
-            movements.Add(new Leftward());
+            //movements.Add(new Backward());
+            //movements.Add(new Leftward());
             movements.Add(new Rightward());
         }
 
@@ -60,6 +61,7 @@ namespace game
             }
             
             var posPlayer = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            posPlayer.Normalize();
                 
             animator.SetFloat("x", posPlayer.x);
             animator.SetFloat("y", posPlayer.y);
